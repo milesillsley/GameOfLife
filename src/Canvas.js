@@ -26,18 +26,27 @@
       ctx.lineWidth = 1;
       ctx.stroke();
   };
-      function handleClick(e) {
-        ctx.fillStyle = "black";
 
-        ctx.fillRect(Math.floor(e.offsetX / step) * step,
-          Math.floor(e.offsetY / step) * step,
-          step, step);
+  function handleClick(e) {
+    if (grid[Math.floor(e.offsetY / step)][Math.floor(e.offsetX / step)] === 0) {
+      ctx.fillStyle = "black";
 
-        grid[Math.floor(e.offsetY / step)][Math.floor(e.offsetX / step)] = 1;
-        console.log(Math.floor(e.offsetX / step))
-        console.log(Math.floor(e.offsetY / step))
-        console.dir(grid);
-      }
+      ctx.fillRect(Math.floor(e.offsetX / step) * step + 1,
+        Math.floor(e.offsetY / step) * step + 1,
+        step - 2, step - 2);
+
+      grid[Math.floor(e.offsetY / step)][Math.floor(e.offsetX / step)] = 1;
+    } else {
+      ctx.fillStyle = "white";
+
+      ctx.fillRect(Math.floor(e.offsetX / step) * step + 1,
+        Math.floor(e.offsetY / step) * step + 1,
+        step - 2, step - 2);
+
+      grid[Math.floor(e.offsetY / step)][Math.floor(e.offsetX / step)] = 0;
+    }
+    console.log(grid);
+  }
 
   drawGrid(ctx, w, h, step);
 }());
