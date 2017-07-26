@@ -3,7 +3,6 @@
   var h = 1000;
   var step = 50;
   var grid = new Grid(20);
-  console.log(grid);
   var canvas = document.getElementById('canvas');
   canvas.width  = w;
   canvas.height = h;
@@ -34,9 +33,10 @@
           Math.floor(e.offsetY / step) * step,
           step, step);
 
+        grid[Math.floor(e.offsetY / step)][Math.floor(e.offsetX / step)] = 1;
         console.log(Math.floor(e.offsetX / step))
         console.log(Math.floor(e.offsetY / step))
-
+        console.dir(grid);
       }
 
   drawGrid(ctx, w, h, step);
