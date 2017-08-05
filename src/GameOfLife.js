@@ -5,33 +5,26 @@ var GameOfLife = function(grid) {
 
 GameOfLife.prototype.progress = function() {
   var futureGrid = new Grid(this._grid.length);
-  console.log(futureGrid);
   for( var x=0; x<this._grid.length; x++ ) {
     for( var y=0; y<this._grid.length; y++ ) {
-      console.log('cell value',this._grid[x][y]);
       if (this._grid[x][y] === 1) {
-        console.log(x,y,'living');
-        console.log('company', this.checkCondition(x,y));
         if (this.checkCondition(x,y) < 2) {
-            futureGrid[x][y] = 0, console.log('solitude');
+            futureGrid[x][y] = 0; //solitude
           }
         else if (this.checkCondition(x,y) === 2 || this.checkCondition(x,y) === 3) {
-            futureGrid[x][y] = 1, console.log('survives');
+            futureGrid[x][y] = 1; //survives
           }
         else if (this.checkCondition(x,y) > 3) {
-            futureGrid[x][y] = 0, console.log('overpopulation');
+            futureGrid[x][y] = 0; //overpopulation
           }
         }
       else if (this._grid[x][y] === 0) {
-        console.log(x,y,'dead');
-        console.log('company', this.checkCondition(x,y));
         if (this.checkCondition(x,y) === 3) {
-          futureGrid[x][y] = 1, console.log('born');
+          futureGrid[x][y] = 1; //born
         }
       }
     }
   }
-  console.log(futureGrid);
   this._grid = futureGrid;
 };
 
@@ -47,6 +40,5 @@ GameOfLife.prototype.checkCondition = function(x,y) {
     }
   }
   if (this._grid[x][y] === 1) {company--;}
-  console.log('company',company);
   return company;
 };
