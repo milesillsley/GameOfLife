@@ -1,8 +1,8 @@
 (function() {
   var w = 1000;
   var h = 1000;
-  var step = 50;
-  var life = new GameOfLife(new Grid(20));
+  var step = 10;
+  var life = new GameOfLife(new Grid(100));
   var nextFrame = document.getElementById('nextFrame');
   nextFrame.addEventListener('click', progressLife);
   var canvas = document.getElementById('canvas');
@@ -17,7 +17,7 @@
               ctx.lineTo(x, h);
       }
       ctx.strokeStyle = 'rgb(255,0,0)';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.5;
       ctx.stroke();
       ctx.beginPath();
       for (var y=0;y<=h;y+=step) {
@@ -25,7 +25,7 @@
               ctx.lineTo(w, y);
       }
       ctx.strokeStyle = 'rgb(255,0,0)';
-      ctx.lineWidth = 1;
+      ctx.lineWidth = 0.5;
       ctx.stroke();
   };
 
