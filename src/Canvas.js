@@ -3,8 +3,13 @@
   var h = 1000;
   var step = 10;
   var life = new GameOfLife(new Grid(100));
+  var refreshFrame;
   var nextFrame = document.getElementById('nextFrame');
   nextFrame.addEventListener('click', progressLife);
+  var start = document.getElementById('start');
+  start.addEventListener('click', startLife);
+  var stop = document.getElementById('stop');
+  stop.addEventListener('click', stopLife);
   var canvas = document.getElementById('canvas');
   canvas.width  = w;
   canvas.height = h;
@@ -49,10 +54,19 @@
       }
     }
   };
-
+  function delay(ms) {
+    ms += new Date().getTime();
+    while (new Date() < ms){}
+  }
   function progressLife() {
     life.progress();
     updateGrid(ctx, w, h, step);
+  }
+  function startLife() {
+    refreshFrame = window.setInterval(progressLife,200);
+  }
+  function stopLife() {
+    window.clearInterval(refreshFrame);
   }
 
   function handleClick(e) {
